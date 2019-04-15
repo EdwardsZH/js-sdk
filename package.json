@@ -1,0 +1,78 @@
+{
+  "name": "wechat-jssdk",
+  "version": "4.1.0",
+  "description": "Next-Generation WeChat JS-SDK integration with NodeJS",
+  "main": "./lib/index.js",
+  "source": "./lib/client.js",
+  "engines": {
+    "node": ">= 6.0"
+  },
+  "scripts": {
+    "start": "DEBUG=wechat* node ./demo/index.js",
+    "dev": "DEBUG=wechat* nodemon -w ./lib -w ./demo ./demo/index.js",
+    "test": "_mocha --exit test/**/*.js",
+    "coverage": "istanbul cover _mocha --report lcov -- -R spec --exit test/**/*.js",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "build": "microbundle -f umd -o dist/client.js --name WechatJSSDK --no-sourcemap",
+    "watch": "microbundle --watch -f umd -o dist/client.js --name WechatJSSDK",
+    "prepublishOnly": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "**/*.js": [
+        "prettier --write",
+        "git add"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonBoy/wechat-jssdk.git"
+  },
+  "keywords": [
+    "wechat",
+    "weixin",
+    "node",
+    "jssdk",
+    "wechat share",
+    "mini program"
+  ],
+  "author": "Jason Jiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JasonBoy/wechat-jssdk/issues"
+  },
+  "homepage": "https://github.com/JasonBoy/wechat-jssdk#readme",
+  "dependencies": {
+    "date-fns": "1.30.1",
+    "debug": "4.1.1",
+    "lodash.isempty": "4.4.0",
+    "mongoose": "5.5.0",
+    "request": "2.88.0",
+    "request-promise": "4.2.4",
+    "xml2js": "0.4.19"
+  },
+  "devDependencies": {
+    "body-parser": "1.18.3",
+    "chai": "4.2.0",
+    "cookie-parser": "1.4.4",
+    "coveralls": "3.0.3",
+    "express": "4.16.4",
+    "express-session": "1.16.0",
+    "husky": "1.3.1",
+    "istanbul": "0.4.5",
+    "lint-staged": "8.1.5",
+    "lowdb": "1.0.0",
+    "microbundle": "0.11.0",
+    "mocha": "5.2.0",
+    "mocha-lcov-reporter": "1.3.0",
+    "nodemon": "1.18.11",
+    "nunjucks": "3.2.0",
+    "prettier": "1.16.4"
+  }
+}
